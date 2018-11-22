@@ -24,7 +24,7 @@ export default class PostList extends Component {
     const {posts} = this.state
     const { onPostDetail, onPostWrite} = this.props
     return (
-      <Layout>
+      <Layout title="게시물 목록">
         <button onClick={ () => onPostWrite() }>글쓰기</button>
         <h1>자유게시판</h1>
         <ul>

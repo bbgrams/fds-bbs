@@ -32,7 +32,7 @@ import Layout from './Layout';
      const {title, body} = this.state
      
      return (
-       <Layout>
+       <Layout title="게시물 내용">
          <h1>게시글</h1>
          <button onClick={() => onPostEdit(postId)}>수정하기</button>
          <h2>{title}</h2>

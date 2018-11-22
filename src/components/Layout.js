@@ -5,6 +5,7 @@ export default class Layout extends Component {
     return (
       <div>
         <div className="header">헤더</div>
+        <h1 className="title">{this.props.title}</h1>
         {this.props.children}
         <div className="footer">푸터</div>
       </div>
