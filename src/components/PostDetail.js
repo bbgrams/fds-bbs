@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import Layout from './Layout';
+import { UserConsumer } from '../contexts/UserContext';
  
  export default class PostDetail extends Component {
    constructor(props) {
@@ -8,7 +9,8 @@ import Layout from './Layout';
    
      this.state = {
         title : '',
-        body : ''
+        body : '',
+        userId : null
      }
    }
    
@@ -20,10 +22,11 @@ import Layout from './Layout';
     //   title : res.data.title,
     //   body : res.data.body
     // })
-    const {data : {title, body}} = await api.get(`/posts/${this.props.postId}`)
+    const {data : {title, body, userId}} = await api.get(`/posts/${this.props.postId}`)
     this.setState({
       title,
-      body
+      body,
+      userId
     })
   }
 
@@ -34,7 +37,13 @@ import Layout from './Layout';
      return (
        <Layout title="게시물 내용">
          <h1>게시글</h1>
-         <button onClick={() => onPostEdit(postId)}>수정하기</button>
+         <UserConsumer>
+           {({id}) => {
+             if(this.state.userId === id){
+               return  <button onClick={() => onPostEdit(postId)}>수정하기</button>
+             }
+           }}
+         </UserConsumer>
          <h2>{title}</h2>
          <p>{body}</p>
        </Layout>
