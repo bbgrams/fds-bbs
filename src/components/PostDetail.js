@@ -1,5 +1,6 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react';
 import api from '../api';
+import Layout from './Layout';
  
  export default class PostDetail extends Component {
    constructor(props) {
@@ -31,12 +32,12 @@ import api from '../api';
      const {title, body} = this.state
      
      return (
-       <div>
+       <Layout>
          <h1>게시글</h1>
          <button onClick={() => onPostEdit(postId)}>수정하기</button>
          <h2>{title}</h2>
          <p>{body}</p>
-       </div>
+       </Layout>
      )
    }
  }
