@@ -30,7 +30,8 @@ export default class UserProvider extends Component {
     localStorage.setItem('token', res.data.token)
     console.log(`로그인 성공 : ${res.data.token}`)
     await this.refreshUser();
-    // TODO : 게시글 목록 보여주기
+    // 게시글 목록 보여주기
+    this.props.onPostListPage()
   }
 
   logout() {
@@ -41,7 +42,7 @@ export default class UserProvider extends Component {
       id : null,
       username : null
     })
-    // TODO : 로그인 폼 보여주기\
+    // TODO : 로그인 폼 보여주기
     
   }
 
@@ -69,3 +70,8 @@ export {
   UserProvider,
   Consumer as UserConsumer
 }
+
+// userProvider는 app에 대한 의존성이 있다.
+// app에 의존하고있다.
+// 컴포넌트간의 의존성이 있을 수 있고 의존성이 필요한 컴포넌트가 구조상 밑에 있어야 한다.
+// 컴포넌트 A가 B의 기능을 필요로 한다면 컴포넌트 A는 B 아래에 있어야 한다.

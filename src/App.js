@@ -30,6 +30,19 @@ class App extends Component {
       postId : null
     }
   }
+
+  handleLoginFormPage(){ // 로그인 폼으로 전환하는 함수 
+    this.setState({
+      page : 'login'
+    })
+  }
+
+  handlePostListPage() {
+    this.setState({
+      page : 'post-list'
+    })
+  }
+
   handleRegisterPage(){
     this.setState({
       page: 'register'
@@ -55,7 +68,7 @@ class App extends Component {
 
   render() {
     return (
-      <UserProvider>
+      <UserProvider onPostListPage={() => this.handlePostListPage()}>
         <div className="App">
           {this.state.page === 'login' ? (
             <LoginForm onRegister={() => this.handleRegisterPage()}/>
@@ -63,6 +76,7 @@ class App extends Component {
             <RegisterForm />
           ) : this.state.page === 'post-list' ? (
             <PostList 
+              onLoginFormPage = {() => this.handleLoginFormPage()}
               onPostDetail={postId => this.handlePostDetailPage(postId)}
               onPostWrite={() => this.handlePostWritePage()}
             /> // 매개변수를 받아준다.
