@@ -7,6 +7,7 @@ import PostList from './components/PostList'
 import PostDetail from './components/PostDetail';
 import PostWrite from './components/PostWrite';
 import PostEdit from './components/PostEdit';
+import {UserProvider} from './contexts/UserContext';
 
 // ** 코드 작성 순서 **
 // 1. 화면그리는코드 
@@ -54,24 +55,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.state.page === 'login' ? (
-          <LoginForm onRegister={() => this.handleRegisterPage()}/>
-        ) : this.state.page ==='register' ? (
-          <RegisterForm />
-        ) : this.state.page === 'post-list' ? (
-          <PostList 
-            onPostDetail={postId => this.handlePostDetailPage(postId)}
-            onPostWrite={() => this.handlePostWritePage()}
-          /> // 매개변수를 받아준다.
-        ) : this.state.page === 'post-detail' ? (
-          <PostDetail postId={this.state.postId} onPostEdit={postId => this.handlePostEditPage(postId)} />
-        ) : this.state.page === 'post-write' ? (
-          <PostWrite onPostDetail = {postId => this.handlePostDetailPage(postId)} />
-        ) : this.state.page === 'post-edit' ? (
-          <PostEdit postId={this.state.postId} onPostDetail ={postId =>this.handlePostDetailPage(postId)} />
-        ) : null }
-      </div>
+      <UserProvider>
+        <div className="App">
+          {this.state.page === 'login' ? (
+            <LoginForm onRegister={() => this.handleRegisterPage()}/>
+          ) : this.state.page ==='register' ? (
+            <RegisterForm />
+          ) : this.state.page === 'post-list' ? (
+            <PostList 
+              onPostDetail={postId => this.handlePostDetailPage(postId)}
+              onPostWrite={() => this.handlePostWritePage()}
+            /> // 매개변수를 받아준다.
+          ) : this.state.page === 'post-detail' ? (
+            <PostDetail postId={this.state.postId} onPostEdit={postId => this.handlePostEditPage(postId)} />
+          ) : this.state.page === 'post-write' ? (
+            <PostWrite onPostDetail = {postId => this.handlePostDetailPage(postId)} />
+          ) : this.state.page === 'post-edit' ? (
+            <PostEdit postId={this.state.postId} onPostDetail ={postId =>this.handlePostDetailPage(postId)} />
+          ) : null }
+        </div>
+      </UserProvider>
     );
   }
 }
