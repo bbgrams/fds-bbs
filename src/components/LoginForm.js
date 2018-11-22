@@ -44,3 +44,8 @@ export default class LoginForm extends React.Component {
 // 폼을 안쓰고 제어되지않는 컴포넌트를 쓰고싶다 => DOM 객체를 가져와야한다.
 // 폼을 안쓰면 e.target.elements.~을 사용 못한다.
 // 이럴때 ref를 붙여줘야한다.
+
+
+  // 이 함수형 컴포넌트는 로그인폼처럼 쓸 수 있다. 
+  // 이 컴포넌트는 받은 props들을 그대로 로그인 폼에 넘겨주고있다 = 사용법이 로그인폼과 똑같다.
+  // 로그인폼과 똑같은 사용법을 가진 컴포넌트를 만들어서 UserConsumer로 감싸주었다.
