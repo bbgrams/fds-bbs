@@ -1,11 +1,18 @@
 import React from "react";
-import { UserConsumer } from "../contexts/UserContext";
+import { UserConsumer, withUser } from "../contexts/UserContext";
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.usernameRef = React.createRef(); // DOM node를 가리킬 수 있는 화살표당!
     this.passwordRef = React.createRef();
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const username = e.target.elements.username.value
+    const password = e.target.elements.password.value
+    this.props.login(username, password)
   }
 
   render() {
@@ -16,17 +23,8 @@ export default class LoginForm extends React.Component {
     //  3. <></> : 2번과 같은 코드이지만 최신버전에서만 동작한다.
     return (
       // provider에서 넘겨주는 login이라는 함수를 로그인폼에서 호출
-      <UserConsumer>
-        {({ login }) => (
           <React.Fragment>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                const username = e.target.elements.username.value;
-                const password = e.target.elements.password.value;
-                login(username, password)
-              }}
-            >
+          <form onSubmit={e => this.handleSubmit(e)}>
               <h1>로그인</h1>
               <input ref={this.usernameRef} type="text" name="username" />
               <input ref={this.passwordRef} type="password" name="password" />
@@ -34,11 +32,12 @@ export default class LoginForm extends React.Component {
             </form>
             <button onClick={() => onRegister()}>회원가입</button>
           </React.Fragment>
-        )}
-      </UserConsumer>
     );
   }
 }
+
+export default withUser(LoginForm);
+
 
 // ref 사용해보기!
 // 폼을 안쓰고 제어되지않는 컴포넌트를 쓰고싶다 => DOM 객체를 가져와야한다.
