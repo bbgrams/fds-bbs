@@ -66,15 +66,23 @@ export default class UserProvider extends Component {
   }
 }
 
+// 이름을 출력해주는 함수. 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
+}
+
 // 고차함수 만들어보기 : with로 시작하는것이 관례이다.
 function withUser(WrappedComponent) {
-  return function(props) {
+  function WithUser(props) {
     // 함수형 컴포넌트(엘리먼트를 반환하는 함수) 반환하기
     return (
       // 이 js 안에서는 UserConsumer가 Consumer로 사용된다.
       <Consumer>{value => <WrappedComponent {...value} {...props} />}</Consumer>
     );
   };
+  // WithUser.displayName = 'WithUser(!!!)' // 개발자도구에서 알아보기 쉽게 displayName에 이름을 넣어줄수있다. 리액트만의 기능
+  withUser.displayName = `WithUser(${getDisplayName(WrappedComponent)})` // getDisplayName 함수를 이용하여 displayName 출력하기
+  return WithUser
 }
 
 export { UserProvider, Consumer as UserConsumer, withUser };
