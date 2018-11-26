@@ -39,7 +39,7 @@ export default class PostEdit extends Component {
       return 'loading...'
     }
     return (
-      <PostForm onSubmit = {e=>this.handleSubmit(e)} title={title} body={body} />
+      <PostForm editing={true} onSubmit = {e=>this.handleSubmit(e)} title={title} body={body} />
     )
   }
 }
