@@ -1,0 +1,21 @@
+$main-color : hotpink;
+$sub-color:tomato;
+$main-border:1px solid grey;
+
+@mixin common-border {
+  border: $main-border;
+}
+
+// desktop 버전의 코드
+@mixin desktop{
+  @media screen and (min-width : 768px) {
+    @content;
+  }
+}
+
+// mobile 버전의 코드
+@mixin mobile{
+  @media screen and (max-width : 768px) {
+    @content;
+  }
+}

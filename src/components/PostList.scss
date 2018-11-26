@@ -1,0 +1,26 @@
+ /* BEM, SCSS 사용하기 */
+
+@import '../common.scss';
+
+.PostList{
+  // & : 자기선택자
+  // &을 써주었을 때에는 부모-자식이 아니고 이름만 &에 내려받음. => .PostList__title
+  &__title{ // & : .PostList
+    color: $main-color;
+    &--loading { // & : .PostList__title
+      color:$sub-color
+    }
+  }
+  
+  &__list{
+    @include common-border;
+    @include desktop{ // 중괄호 안에 들어가는 부분이 @contet부분에 들어가게된다.
+      border-color:yellow;
+    }
+  }
+  
+  // & 를 써주지 않았을 떄에는 부모-자식이 된다. => .PostList .PostList__item
+  .PostList__item{
+    color: cornflowerblue; 
+  }
+}

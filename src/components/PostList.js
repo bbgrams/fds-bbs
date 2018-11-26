@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import api from '../api';
 import Layout from './Layout';
 import {UserConsumer} from '../contexts/UserContext';
+import classNames from 'classnames'
+import './PostList.scss'
 
 
 export default class PostList extends Component {
@@ -9,14 +11,15 @@ export default class PostList extends Component {
     super(props) 
     this.state = {
       posts: [],
-      loading : false
+      loading : true
     }
   }
  
   async componentDidMount() {
     const res = await api.get('/posts')
     this.setState({
-      posts : res.data
+      posts : res.data,
+      loading : false
     })
   }
  
@@ -24,17 +27,28 @@ export default class PostList extends Component {
   render() {
     const {posts} = this.state
     const { onPostDetail, onPostWrite, onLoginFormPage} = this.props
-    return <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
-        <button onClick={() => onPostWrite()}>글쓰기</button>
-        <h1>자유게시판</h1>
-        <ul>
-          {posts.map(post => (
-            <li key={post.id} onClick={() => onPostDetail(post.id)}>
-              {post.title}
-            </li>
-          ))}
-        </ul>
-      </Layout>;
+    const titleClass = classNames(
+      'PostList__title', // 항상 들어가는 클래스명
+      {
+        'PostList__title--loading' : this.state.loading // 상태에 따른 클래스 설정
+      }
+
+    )
+    return (
+      <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
+        <div className="PostList">
+          <button onClick={() => onPostWrite()}>글쓰기</button>
+          <h1 className={titleClass}>자유게시판</h1>
+          <ul className="PostList__list">
+            {posts.map(post => (
+            <li className="PostList__item" key={post.id} onClick={() => onPostDetail(post.id)}>
+                {post.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Layout>
+    )
   }
 }
 
