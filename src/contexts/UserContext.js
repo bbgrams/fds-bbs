@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import api from "../api";
 
-const { Provider, Consumer } = React.createContext();
+// provider가 없을떄 괄호 안의 값이 기본값으로 설정된다
+const { Provider, Consumer } = React.createContext({
+  // 기본값 설정
+  username:'fast',
+  id:0,
+  login:() => {},
+  logout : () => {}
+});
 
 export default class UserProvider extends Component {
   constructor(props) {

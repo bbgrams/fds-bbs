@@ -37,3 +37,9 @@
 
 ### `classnames` 라이브러리 
 - `npm install classnames`
+
+
+### 컴포넌트 분할(PostForm, PostWrite, PostEdit)
+- 화면을 그리는 컴포넌트와 통신을 하는 컴포넌트를 분리하자.
+- PC는 다른 컴포넌트에 의존하지않게 분리하자
+- CC를 HOC

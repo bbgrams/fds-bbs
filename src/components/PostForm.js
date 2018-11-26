@@ -7,7 +7,7 @@ export default class PostForm extends Component {
   render() {
     const {editing} = this.props
     const titleClass = classNames(
-      s.titleImput,
+      s.titleInput,
       {
         // editing이 true일 때에 s.editing을 붙인다.
         // 객체 리터럴에서 속성 이름에 대괄호를 입력했을 떄 대괄호 안의 표현식의 결과값이 속성 이름이 된다.

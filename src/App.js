@@ -3,7 +3,7 @@ import './App.css';
 import LoginForm from './components/LoginForm'
 import RegisterForm from "./components/RegisterForm";
 import PostList from './components/PostList'
-import PostDetail from './components/PostDetail';
+import PostDetail from './containers/PostDetail';
 import PostWrite from './components/PostWrite';
 import PostEdit from './components/PostEdit';
 import {UserProvider} from './contexts/UserContext';

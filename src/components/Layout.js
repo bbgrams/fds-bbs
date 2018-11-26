@@ -10,9 +10,9 @@ class Layout extends Component {
           헤더
           <div>{username}</div>
           {username ? (
-            <button onClick={logout}>로 그 아 웃</button>
+            <button onClick={logout}>로그아웃</button>
           ) : (
-            <button onClick={onLoginFormPage}>로 그 인</button>
+            <button onClick={onLoginFormPage}>로그인</button>
           )}
         </div>
         <h1 className="title">{this.props.title}</h1>
