@@ -1,5 +1,6 @@
 import React from "react";
 import { UserConsumer, withUser } from "../contexts/UserContext";
+import {Form} from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -23,15 +24,15 @@ class LoginForm extends React.Component {
     //  3. <></> : 2번과 같은 코드이지만 최신버전에서만 동작한다.
     return (
       // provider에서 넘겨주는 login이라는 함수를 로그인폼에서 호출
-          <React.Fragment>
-          <form onSubmit={e => this.handleSubmit(e)}>
+        <React.Fragment>
+          <Form onSubmit={e => this.handleSubmit(e)}>
               <h1>로그인</h1>
-              <input ref={this.usernameRef} type="text" name="username" />
-              <input ref={this.passwordRef} type="password" name="password" />
-              <button>로그인</button>
-            </form>
+              <Form.Input label="사용자 이름" type="text" name="username" />
+              <Form.Input label="비밀번호"  type="password" name="password" />
+              <Form.Button>로그인</Form.Button>
+            </Form>
             <button onClick={() => onRegister()}>회원가입</button>
-          </React.Fragment>
+        </React.Fragment>
     );
   }
 }

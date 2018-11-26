@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../api'
+import {Form} from 'semantic-ui-react'
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -58,12 +59,12 @@ export default class RegisterForm extends Component {
   render() { // 이벤트 객체를 넘겨야 할 떄는 (e)를 써주어야한다.
     const {username, password} = this.state
     return (
-      <form onSubmit={e => this.handleSubmit(e)}> 
+      <Form onSubmit={e => this.handleSubmit(e)}> 
         <h1>회원가입</h1>
-        <input type="text" name="username" value={username} onChange={e => this.handleFieldChange(e, 'username')} />
-        <input type="password" name="password" value={password} onChange={e => this.handleFieldChange(e, 'password')} />
-        <button>가입</button>
-      </form>
+        <Form.Input labe="사용자이름" placeholder="아이디" type="text" name="username" value={username} onChange={e => this.handleFieldChange(e, 'username')} />
+        <Form.Input labe="비밀번호" placeholder="비밀번호" type="password" name="password" value={password} onChange={e => this.handleFieldChange(e, 'password')} />
+        <Form.Button>가입</Form.Button>
+      </Form>
     )
   }
 }
