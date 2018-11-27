@@ -22,7 +22,7 @@ export default class PostEdit extends Component {
   async handleSubmit(title,body){
     await api.patch(`/posts/${this.props.postId}`,{
       title,
-      body
+      body 
     })
 
     // 게시물 세부 페이지 보여주기
