@@ -3,6 +3,14 @@ import { UserConsumer, withUser } from "../contexts/UserContext";
 import {Form} from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
+  static defaultProps ={
+    // 사용자가 로그인 폼을 전송했을 때 호출되는 함수
+    // username과 password 인수를 받음
+    login : (username, password) => {},
+    // 회원가입 버튼을 눌렀을 때 호출되는 함수
+    // 함수를 반드시 넘겨줘야만 작동할 때는 null을 넣어준다.
+    onRegister : null
+  }
   constructor(props) {
     super(props);
     this.usernameRef = React.createRef(); // DOM node를 가리킬 수 있는 화살표당!
