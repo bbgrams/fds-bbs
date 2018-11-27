@@ -43,3 +43,13 @@
 - 화면을 그리는 컴포넌트와 통신을 하는 컴포넌트를 분리하자.
 - PC는 다른 컴포넌트에 의존하지않게 분리하자
 - CC를 HOC
+
+
+
+
+### page 컴포넌트, 분리
+
+1. PostList => /pages/PostListPage
+1. PostList를 연결했던 경로들을 pages의 PostListPage로 수정
+1. PostListPage 내용을 복사해서 container/PageList 생성
+1.  PostList로 간 내용은 Page에서 다 지워준다 

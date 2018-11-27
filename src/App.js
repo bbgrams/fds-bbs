@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm'
 import RegisterForm from "./components/RegisterForm";
-import PostList from './components/PostList'
+import PostListPage from './pages/PostListPage'
 import PostDetail from './containers/PostDetail';
 import PostWrite from './components/PostWrite';
 import PostEdit from './components/PostEdit';
@@ -74,7 +74,7 @@ class App extends Component {
           ) : this.state.page ==='register' ? (
             <RegisterForm />
           ) : this.state.page === 'post-list' ? (
-            <PostList 
+            <PostListPage 
               onLoginFormPage = {() => this.handleLoginFormPage()}
               onPostDetail={postId => this.handlePostDetailPage(postId)}
               onPostWrite={() => this.handlePostWritePage()}
