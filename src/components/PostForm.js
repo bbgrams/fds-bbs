@@ -7,7 +7,9 @@ export default class PostForm extends Component {
   static defaultProps = {
     // 모든 컴포넌트에는 default props가 있어야하고 모든 default props에는 주석으로 사용 설명서를 달아놓는다.
     // true가 주어지면, 편집 모드 스타일이 적용됨
-    editing: false // editing이라는 값이 주어지지않았을때에는 false라는 값이 들어간다.
+    editing: false, // editing이라는 값이 주어지지않았을때에는 false라는 값이 들어간다.
+    // 폼 전송 시 호출되는 함수, title과 body를  인수로 받음
+    onSubmit : () => {} 
   }
   render() {
     const {editing} = this.props
@@ -21,7 +23,12 @@ export default class PostForm extends Component {
     )
     return (
       <div>
-        <form onSubmit={e => this.props.onSubmit(e)}>
+        <form onSubmit={e => {
+          e.preventDefault()
+          const title= e.target.elements.title.value
+          const body= e.target.elements.body.value
+          this.props.onSubmit(e)
+          }}>
           <input className={titleClass} type="text" name="title" defaultValue={this.props.title} />
           <textarea name="body" cols="30" rows="10" defaultValue={this.props.body}></textarea>
           <button className={s['form-button']}>작성</button>

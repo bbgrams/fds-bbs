@@ -19,10 +19,7 @@ export default class PostEdit extends Component {
       body
     })
   }
-  async handleSubmit(e){
-    e.preventDefault()
-    const title = e.target.elements.title.value
-    const body = e.target.elements.body.value
+  async handleSubmit(title,body){
     await api.patch(`/posts/${this.props.postId}`,{
       title,
       body
@@ -39,7 +36,7 @@ export default class PostEdit extends Component {
       return 'loading...'
     }
     return (
-      <PostForm editing={true} onSubmit = {e=>this.handleSubmit(e)} title={title} body={body} />
+      <PostForm editing={true} onSubmit = {(title, body) =>this.handleSubmit(title, body)} title={title} body={body} />
     )
   }
 }

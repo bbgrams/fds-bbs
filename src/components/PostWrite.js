@@ -4,10 +4,7 @@ import PostForm from './PostForm'
 
 
 export default class PostWrite extends Component {
-  async handleSubmit(e){
-    e.preventDefault()
-    const title = e.target.elements.title.value
-    const body = e.target.elements.body.value
+  async handleSubmit(title, body){
     const res = await api.post('/posts',{ // 자료를 생성하면 id가 들어있는 그 자료를 우리에게 반환해준다.
       title,
       body
@@ -19,7 +16,7 @@ export default class PostWrite extends Component {
 
   render() {
     return (
-      <PostForm onSubmit = {e => this.handleSubmit(e)} />
+      <PostForm onSubmit = {(title,body) => this.handleSubmit(title,body)} />
     )
   }
 }
