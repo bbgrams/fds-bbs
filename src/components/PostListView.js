@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
 export default class PostListView extends Component {
   render() {
-    const {
-      posts,
-      onPostDetail,
-      onPostWrite,
-      onLoginFormPage,
-      loading,
-    } = this.props;
+    const { posts, onPostDetail, onPostWrite, loading } = this.props;
     const titleClass = classNames(
       'PostList__title', // 항상 들어가는 클래스명
       {
@@ -18,6 +13,9 @@ export default class PostListView extends Component {
     );
     return (
       <React.Fragment>
+        <Helmet>
+          <title>게시물 목록</title>
+        </Helmet>
         <div className="PostList">
           <button onClick={() => onPostWrite()}>글쓰기</button>
           <h1 className={titleClass}>자유게시판</h1>
