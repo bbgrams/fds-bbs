@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import api from '../api';
 import Layout from '../components/Layout';
-import {UserConsumer} from '../contexts/UserContext';
-import classNames from 'classnames'
-import '../components/PostList.scss'
-import PostList from '../containers/PostList'
-
-
+import { UserConsumer } from '../contexts/UserContext';
+import classNames from 'classnames';
+import '../components/PostList.scss';
+import PostList from '../containers/PostList';
 
 export default class PostListPage extends Component {
-   
- 
   render() {
-    const { onPostDetail, onPostWrite, onLoginFormPage} = this.props
+    const { onPostDetail, onPostWrite, onLoginFormPage } = this.props;
     return (
       <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
         <PostList
-         onPostDetail={onPostDetail} 
-         onPostWrite = {onPostWrite}
-         onLoginFormPage ={onLoginFormPage}
-         />
+          onPostDetail={onPostDetail}
+          onPostWrite={onPostWrite}
+          onLoginFormPage={onLoginFormPage}
+        />
       </Layout>
-    )
+    );
   }
 }
 

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { UserConsumer, withUser } from "../contexts/UserContext";
+import React, { Component } from 'react';
+import { UserConsumer, withUser } from '../contexts/UserContext';
 
 class Layout extends Component {
   render() {

@@ -2,32 +2,37 @@ import React, { Component } from 'react';
 import api from '../api';
 import Layout from '../components/Layout';
 import { UserConsumer } from '../contexts/UserContext';
-import classNames from 'classnames'
-import '../components/PostList.scss'
+import classNames from 'classnames';
+import '../components/PostList.scss';
 import PostListView from '../components/PostListView';
-
 
 export default class PostList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       posts: [],
-      loading: true
-    }
+      loading: true,
+    };
   }
 
   async componentDidMount() {
-    const res = await api.get('/posts')
+    const res = await api.get('/posts');
     this.setState({
       posts: res.data,
-      loading: false
-    })
+      loading: false,
+    });
   }
 
-
   render() {
-    const {onPostDetail, onPostWrite} = this.props
-    return <PostListView posts={this.state.posts} loading={loading} onPostDetail={onPostDetail} onPostWrite={onPostWrite} />
+    const { onPostDetail, onPostWrite, loading } = this.props;
+    return (
+      <PostListView
+        posts={this.state.posts}
+        loading={loading}
+        onPostDetail={onPostDetail}
+        onPostWrite={onPostWrite}
+      />
+    );
   }
 }
 

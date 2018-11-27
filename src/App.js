@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginForm from './components/LoginForm'
-import RegisterForm from "./components/RegisterForm";
-import PostListPage from './pages/PostListPage'
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import PostListPage from './pages/PostListPage';
 import PostDetail from './containers/PostDetail';
 import PostWrite from './components/PostWrite';
 import PostEdit from './components/PostEdit';
-import {UserProvider} from './contexts/UserContext';
+import { UserProvider } from './contexts/UserContext';
 
 // ** 코드 작성 순서 **
-// 1. 화면그리는코드 
-// 2. 상태설계 
-// 3. 상태로부터 화면그리기 
+// 1. 화면그리는코드
+// 2. 상태설계
+// 3. 상태로부터 화면그리기
 // 4. 상호작용이 일어났을때 상태변경하기
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       // page === 'login' -> 로그인 페이지
       // page === 'register' -> 회원가입 페이지
@@ -26,43 +26,44 @@ class App extends Component {
       // page === 'post-edit' -> 게시물 수정 페이지
       page: 'post-list',
       // 현재 보고있는 게시물의 ID
-      postId : null
-    }
+      postId: null,
+    };
   }
 
-  handleLoginFormPage(){ // 로그인 폼으로 전환하는 함수 
+  handleLoginFormPage() {
+    // 로그인 폼으로 전환하는 함수
     this.setState({
-      page : 'login'
-    })
+      page: 'login',
+    });
   }
 
   handlePostListPage() {
     this.setState({
-      page : 'post-list'
-    })
+      page: 'post-list',
+    });
   }
 
-  handleRegisterPage(){
+  handleRegisterPage() {
     this.setState({
-      page: 'register'
-    })
+      page: 'register',
+    });
   }
   handlePostDetailPage(postId) {
     this.setState({
-      page : 'post-detail',
-      postId
-    })
+      page: 'post-detail',
+      postId,
+    });
   }
   handlePostWritePage() {
     this.setState({
-      page : 'post-write'
-    })
+      page: 'post-write',
+    });
   }
   handlePostEditPage(postId) {
     this.setState({
-      page : 'post-edit',
-      postId
-    })
+      page: 'post-edit',
+      postId,
+    });
   }
 
   render() {
@@ -70,22 +71,30 @@ class App extends Component {
       <UserProvider onPostListPage={() => this.handlePostListPage()}>
         <div className="App">
           {this.state.page === 'login' ? (
-            <LoginForm onRegister={() => this.handleRegisterPage()}/>
-          ) : this.state.page ==='register' ? (
+            <LoginForm onRegister={() => this.handleRegisterPage()} />
+          ) : this.state.page === 'register' ? (
             <RegisterForm />
           ) : this.state.page === 'post-list' ? (
-            <PostListPage 
-              onLoginFormPage = {() => this.handleLoginFormPage()}
+            <PostListPage
+              onLoginFormPage={() => this.handleLoginFormPage()}
               onPostDetail={postId => this.handlePostDetailPage(postId)}
               onPostWrite={() => this.handlePostWritePage()}
             /> // 매개변수를 받아준다.
           ) : this.state.page === 'post-detail' ? (
-            <PostDetail postId={this.state.postId} onPostEdit={postId => this.handlePostEditPage(postId)} />
+            <PostDetail
+              postId={this.state.postId}
+              onPostEdit={postId => this.handlePostEditPage(postId)}
+            />
           ) : this.state.page === 'post-write' ? (
-            <PostWrite onPostDetail = {postId => this.handlePostDetailPage(postId)} />
+            <PostWrite
+              onPostDetail={postId => this.handlePostDetailPage(postId)}
+            />
           ) : this.state.page === 'post-edit' ? (
-            <PostEdit postId={this.state.postId} onPostDetail ={postId =>this.handlePostDetailPage(postId)} />
-          ) : null }
+            <PostEdit
+              postId={this.state.postId}
+              onPostDetail={postId => this.handlePostDetailPage(postId)}
+            />
+          ) : null}
         </div>
       </UserProvider>
     );

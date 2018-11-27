@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import api from "../api";
+import React, { Component } from 'react';
+import api from '../api';
 
 // provider가 없을떄 괄호 안의 값이 기본값으로 설정된다
 const { Provider, Consumer } = React.createContext({
   // 기본값 설정
-  username:'fast',
-  id:0,
-  login:() => {},
-  logout : () => {}
+  username: 'fast',
+  id: 0,
+  login: () => {},
+  logout: () => {},
 });
 
 export default class UserProvider extends Component {
@@ -16,12 +16,12 @@ export default class UserProvider extends Component {
 
     this.state = {
       id: null,
-      username: null
+      username: null,
     };
   }
 
   async componentDidMount() {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem('token')) {
       // 로컬스토리지에 토큰이 들어있다면 `/me` 경로에 요청해서
       await this.refreshUser();
     }
@@ -31,11 +31,11 @@ export default class UserProvider extends Component {
     // handleSubmit(e) => login(username, password)
     // 로그인이라는 기능만 있는 함수
     // provider에서 넘겨주는 login이라는 함수를 로그인폼에서 호출
-    const res = await api.post("/users/login", {
+    const res = await api.post('/users/login', {
       username,
-      password
+      password,
     });
-    localStorage.setItem("token", res.data.token);
+    localStorage.setItem('token', res.data.token);
     console.log(`로그인 성공 : ${res.data.token}`);
     await this.refreshUser();
     // 게시글 목록 보여주기
@@ -44,21 +44,21 @@ export default class UserProvider extends Component {
 
   logout() {
     // 로컬 스토리지에서 토큰 제거
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     // 사용자 정보 캐시 초기화
     this.setState({
       id: null,
-      username: null
+      username: null,
     });
     // TODO : 로그인 폼 보여주기
   }
 
   async refreshUser() {
     // 요청보내서 받아내는 함수
-    const res2 = await api.get("/me"); // username, id가 날라온다.
+    const res2 = await api.get('/me'); // username, id가 날라온다.
     this.setState({
       id: res2.data.id,
-      username: res2.data.username
+      username: res2.data.username,
     });
   }
   render() {
@@ -67,15 +67,15 @@ export default class UserProvider extends Component {
       username: this.state.username,
       id: this.state.id,
       login: this.login.bind(this),
-      logout: this.logout.bind(this)
+      logout: this.logout.bind(this),
     };
     return <Provider value={value}>{this.props.children}</Provider>;
   }
 }
 
-// 이름을 출력해주는 함수. 
+// 이름을 출력해주는 함수.
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || "Component";
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
 // 고차함수 만들어보기 : with로 시작하는것이 관례이다.
@@ -86,10 +86,10 @@ function withUser(WrappedComponent) {
       // 이 js 안에서는 UserConsumer가 Consumer로 사용된다.
       <Consumer>{value => <WrappedComponent {...value} {...props} />}</Consumer>
     );
-  };
+  }
   // WithUser.displayName = 'WithUser(!!!)' // 개발자도구에서 알아보기 쉽게 displayName에 이름을 넣어줄수있다. 리액트만의 기능
-  withUser.displayName = `WithUser(${getDisplayName(WrappedComponent)})` // getDisplayName 함수를 이용하여 displayName 출력하기
-  return WithUser
+  withUser.displayName = `WithUser(${getDisplayName(WrappedComponent)})`; // getDisplayName 함수를 이용하여 displayName 출력하기
+  return WithUser;
 }
 
 export { UserProvider, Consumer as UserConsumer, withUser };

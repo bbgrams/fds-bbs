@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import s from './PostForm.module.scss'
-import classNames from 'classnames'
+import React, { Component } from 'react';
+import s from './PostForm.module.scss';
+import classNames from 'classnames';
 
 // defaultValue 에 다른 값을 또 넣어주지않도록 주의. 한번 값을 넣어줬으면 그 값이 유지되게 한다.
 export default class PostForm extends Component {
@@ -9,32 +9,41 @@ export default class PostForm extends Component {
     // true가 주어지면, 편집 모드 스타일이 적용됨
     editing: false, // editing이라는 값이 주어지지않았을때에는 false라는 값이 들어간다.
     // 폼 전송 시 호출되는 함수, title과 body를  인수로 받음
-    onSubmit : () => {} 
-  }
+    onSubmit: () => {},
+  };
   render() {
-    const {editing} = this.props
-    const titleClass = classNames(
-      s.titleInput,
-      {
-        // editing이 true일 때에 s.editing을 붙인다.
-        // 객체 리터럴에서 속성 이름에 대괄호를 입력했을 떄 대괄호 안의 표현식의 결과값이 속성 이름이 된다.
-        [s.editing] : editing
-      }
-    )
+    const { editing } = this.props;
+    const titleClass = classNames(s.titleInput, {
+      // editing이 true일 때에 s.editing을 붙인다.
+      // 객체 리터럴에서 속성 이름에 대괄호를 입력했을 떄 대괄호 안의 표현식의 결과값이 속성 이름이 된다.
+      [s.editing]: editing,
+    });
     return (
       <div>
-        <form onSubmit={e => {
-          e.preventDefault()
-          const title= e.target.elements.title.value
-          const body= e.target.elements.body.value
-          this.props.onSubmit(e)
-          }}>
-          <input className={titleClass} type="text" name="title" defaultValue={this.props.title} />
-          <textarea name="body" cols="30" rows="10" defaultValue={this.props.body}></textarea>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            const title = e.target.elements.title.value;
+            const body = e.target.elements.body.value;
+            this.props.onSubmit(e);
+          }}
+        >
+          <input
+            className={titleClass}
+            type="text"
+            name="title"
+            defaultValue={this.props.title}
+          />
+          <textarea
+            name="body"
+            cols="30"
+            rows="10"
+            defaultValue={this.props.body}
+          />
           <button className={s['form-button']}>작성</button>
         </form>
       </div>
-    )
+    );
   }
 }
 
