@@ -10,6 +10,7 @@
 ### 내 정보는 어디에서는 사용되는 정보이기 때문에 context를 이용하자.
 
 1. 로그인을 하는 순간,
+
    ```js
    // 로그인 폼 안에 있는 handleSubmit을 UserProvider로 옮긴다.
      async handleSubmit(e){
@@ -26,33 +27,29 @@
    }
    ```
 
-```
-  - `/me`에 요청을 보내서....
+   - `/me`에 요청을 보내서....
 
 1. 재접속 하는 순간 provider에 넣어준다.
-  - 새로고침 했을 때 토큰이 남아있다면 `/me`에 토큰과 요청을 보내 받아온다.
+
+- 새로고침 했을 때 토큰이 남아있다면 `/me`에 토큰과 요청을 보내 받아온다.
 
 ### 내가 작성한 글에서만 수정버튼 출력
 
-### 게시판 작업 - LoginForm에서  라이프사이클 메소드에서 context에 접근하기 부분 코드 수정 못했음....
-
+### 게시판 작업 - LoginForm에서 라이프사이클 메소드에서 context에 접근하기 부분 코드 수정 못했음....
 
 ### `classnames` 라이브러리
+
 - `npm install classnames`
 
-
 ### 컴포넌트 분할(PostForm, PostWrite, PostEdit)
+
 - 화면을 그리는 컴포넌트와 통신을 하는 컴포넌트를 분리하자.
 - PC는 다른 컴포넌트에 의존하지않게 분리하자
 - CC를 HOC
-
-
-
 
 ### page 컴포넌트, 분리
 
 1. PostList => /pages/PostListPage
 1. PostList를 연결했던 경로들을 pages의 PostListPage로 수정
 1. PostListPage 내용을 복사해서 container/PageList 생성
-1.  PostList로 간 내용은 Page에서 다 지워준다
-```
+1. PostList로 간 내용은 Page에서 다 지워준다
