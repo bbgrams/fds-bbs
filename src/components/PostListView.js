@@ -23,8 +23,8 @@ export default class PostListView extends Component {
           <ul className="PostList__list">
             {posts.map(post => (
               <li
-                className="PostList__item"
                 key={post.id}
+                className="PostList__item"
                 onClick={() => onPostDetail(post.id)}
               >
                 {post.title}
