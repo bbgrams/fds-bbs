@@ -11,6 +11,7 @@ export default class PostListView extends Component {
         'PostList__title--loading': loading, // 상태에 따른 클래스 설정
       }
     );
+    console.log(posts);
     return (
       <React.Fragment>
         <Helmet>
